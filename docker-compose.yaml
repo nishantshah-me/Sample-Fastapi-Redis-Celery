@@ -6,7 +6,6 @@ services:
     build:
       context: ./subscriber
       dockerfile: ./Dockerfile
-    image: jeremyleo/python-redis-subscriber
     tty: true
     entrypoint: python app.py
     depends_on:
@@ -15,7 +14,6 @@ services:
     build:
       context: ./publisher
       dockerfile: ./Dockerfile
-    image: jeremyleo/python-redis-publisher
     ports:
       - 8080:8080
     entrypoint: uvicorn app:app --host 0.0.0.0 --port 8080
@@ -23,9 +21,9 @@ services:
       - redis
   worker:
       build:
-        context: .
-        dockerfile: ./celery/Dockerfile
-      command: [ 'celery', '-A', 'app.app', 'worker', '-l', 'info' ]
+        context: background_job
+        dockerfile: ./Dockerfile
+      tty: true
       environment:
         - BROKER_URL=redis://redis:6379
         - RESULT_BACKEND=redis://redis:6379

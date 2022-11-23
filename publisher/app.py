@@ -16,7 +16,7 @@ REDIS_HOST = config("REDIS_HOST", default="redis")
 CELERY_BROKER_URL = os.getenv("REDISSERVER", "redis://redis:6379")
 CELERY_RESULT_BACKEND = os.getenv("REDISSERVER", "redis://redis:6379")
 
-celery = Celery("celery", backend=CELERY_BROKER_URL, broker=CELERY_RESULT_BACKEND)
+celery = Celery("background_job", backend=CELERY_BROKER_URL, broker=CELERY_RESULT_BACKEND)
 
 
 class Item(BaseModel):

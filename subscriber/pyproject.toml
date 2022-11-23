@@ -2,10 +2,10 @@
 name = "subscriber"
 version = "0.1.0"
 description = ""
-authors = ["Jeremy Leonardo <58095255+jeremy-leonardo@users.noreply.github.com>"]
+authors = ["Nishant Shah"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.10"
 redis = "^3.5.3"
 prettyconf = "^2.2.1"
 celery = "^5.2.7"

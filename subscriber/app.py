@@ -11,7 +11,7 @@ REDIS_HOST = config("REDIS_HOST", default="redis")
 CELERY_BROKER_URL = os.getenv("REDISSERVER", "redis://redis:6379")
 CELERY_RESULT_BACKEND = os.getenv("REDISSERVER", "redis://redis:6379")
 
-celery = Celery("celery", backend=CELERY_BROKER_URL, broker=CELERY_RESULT_BACKEND)
+celery = Celery("background_job", backend=CELERY_BROKER_URL, broker=CELERY_RESULT_BACKEND)
 
 
 def main():
@@ -25,7 +25,7 @@ def main():
                 print(f"received {message}")
                 task_name = "hello.task"
                 task = celery.send_task(task_name, args=[message['data']])
-                print(f"celery task sent {task}")
+                print(f"background_job task sent {task}")
                 time.sleep(0.001)
         except redis.ConnectionError:
             # Do reconnection attempts here such as sleeping and retrying

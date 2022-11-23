@@ -1,15 +1,13 @@
 [tool.poetry]
-name = "publisher"
+name = "Background Job"
 version = "0.1.0"
 description = ""
-authors = ["Nishant Shah"]
+authors = ["Nishant <nishant_shah@external.mckinsey.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-redis = "^3.5.3"
-fastapi = "^0.63.0"
+redis = "^4.3.5"
 prettyconf = "^2.2.1"
-uvicorn = "^0.20.0"
 celery = "^5.2.7"
 [tool.poetry.dev-dependencies]
 
